@@ -1,3 +1,4 @@
 <?php
 include __DIR__."/Libreria/Autoload.php";
-var_Dump(Conexion::Getinstancia());
+$instancia = new Usuarios();
+echo $instancia->GetallUsuarios();

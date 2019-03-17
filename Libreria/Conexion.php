@@ -17,7 +17,7 @@ Class Conexion extends Credenciales
     private function  __clone(){}
     private function __construct()
     {
-        $this->_connection = new mysqli($this->_host, $this->_username,$this->_password, $this->_database);
+        $this->conn = new mysqli($this->_host, $this->_username,$this->_password, $this->_database);
         // Error handling
         if(mysqli_connect_error())
         {
