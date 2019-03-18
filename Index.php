@@ -1,4 +1,6 @@
 <?php
 include __DIR__."/Libreria/Autoload.php";
 $instancia = new Usuarios();
-echo $instancia->GetallUsuarios();
+$array =  $instancia->GetallUsuarios();
+$validacion = new Validacion();
+
