@@ -36,7 +36,7 @@ Class Usuarios  implements Iusuarios
         foreach($rows3 as $row2)
         {
      //   echo json_encode($row2);
-         return $row2;
+         return json_encode($row2);
         }
     }
     //Method f
