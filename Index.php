@@ -5,4 +5,4 @@ $array =  $instancia->GetallUsuarios();
 $validacion = new Validacion();
 $libro = new Libros();
 
-var_dump();
+echo json_encode($array);

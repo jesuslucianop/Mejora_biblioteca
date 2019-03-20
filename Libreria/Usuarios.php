@@ -8,51 +8,39 @@ Class Usuarios  implements Iusuarios
     private $password;
     private $Rol;
     private $db;
-    private $mysqli;
-    private $list =   array();
-    public function __Construct()
+    
+    //Get the instance of conection in the constructor of this class 
+    public function __Construct(){ $this->db = Conexion::Getinstancia()->GetConexion();}
+    public function __set($prop,$val)
     {
-        //Get the instance of conection
-        $this->db = Conexion::Getinstancia();
-        //put in mysqli property a method that get the object mysqli
-        $this->mysqli =  $this->db->GetConexion();
+        if(isset($prop))
+        { $this->$prop = $val;}else{echo "No existe una propiedad llamada {$prop}";}
     }
     //Method for Create new user 
-    public function CreateNewUser($nombre,$username,$password,$rol)
+    public function CreateNewUser()
     {
-        $data = $this->mysqli->query("INSERT INTO usuarios (nombre,username,password,rol) VALUES ('".$nombre."' '".$username."','".$password."','".$rol."')");
+        $data = $this->db->query("INSERT INTO usuarios (nombre,username,password,rol) VALUES ('".$this->nombre."' '".$this->username."','".$this->password."','".$this->rol."')");
     }
     // Method for Get all users from database 
     static function GetallUsuarios()
     {
+        $ocon = Conexion::GetInstancia()->GetConexion();
         $sql = "Select * from usuarios";
-         $data= $this->mysqli->query("select * from usuarios ");
-         while($fila = $this->mysqli->fetch_object($data)){
+        $data=  $ocon->query("select * from usuarios ");
+         while($fila = mysqli_fetch_object($data)/*$fila = $ocon->fetch_object($data)*/){
              $datos[] = $fila;
          }
-return $datos;
-         /*
-        $res = $data->fetch_row();  
-        while($row = $data->fetch_objet())
-        {
-        $rows3[] = $row;
-        }
-        
-        foreach($rows3 as $row2)
-        {
-     //   echo json_encode($row2);
-         return json_encode($row2);
-        }*/
+        return $datos;
     }
     //Method f
-    public function UpdateUser($nombre,$username,$password,$rol)
+    public function UpdateUser()
     {
-        $data = $this->mysqli->query("UPDATE usuarios SET id = '".$id."',Nombre = '".$Nombre."',Username = '".$Username."', Password = '".$Password."',Rol = '".$rol."' WHERE id = '".$id."' ");
+        $data = $this->db->query("UPDATE usuarios SET Nombre = '".$this->nombre."',Username = '".$this->username."', Password = '".$this->password."',Rol = '".$this->rol."' WHERE id = '".$id."' ");
 
     }
-    public function DeleteUser($username)
+    public function DeleteUser()
     {
-        $data = $this->mysqli->query("Delete from usuarios where Username = '".$username."' ");
+        $data = $this->db->query("Delete from usuarios where Username = '".$this->username."' ");
 
     }
 
