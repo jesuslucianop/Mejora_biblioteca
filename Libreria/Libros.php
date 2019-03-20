@@ -3,7 +3,7 @@
 include __DIR__."/Intefaces/ILibros.php";
 Class Libros 
 {
-    private $nombre;
+    private $nombre = "";
     private $cod_autor;
     private $cantidad_pagina;
     private $db;
@@ -26,6 +26,25 @@ Class Libros
     {
         $this->nombre = $nombre;
     }
+    function __get($propiedad)
+    {
+        if(isset($this->$propiedad))
+        {
+           return $this->$propiedad;
+        }else {
+                echo "No existe la propiedad {$this->$propiedad}";
+        }
+    }
+    function __set($propiedad,$valor)
+    {
+        if(isset($this->$propiedad))
+        {
+            $this->$propiedad = $valor;
+        }else {
+                echo "No existe la propiedad {$propiedad}";
+        }
+    }
+    
     
     public function Getname()
     {

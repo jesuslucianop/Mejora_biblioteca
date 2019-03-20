@@ -23,12 +23,17 @@ Class Usuarios  implements Iusuarios
         $data = $this->mysqli->query("INSERT INTO usuarios (nombre,username,password,rol) VALUES ('".$nombre."' '".$username."','".$password."','".$rol."')");
     }
     // Method for Get all users from database 
-    public  function GetallUsuarios()
+    static function GetallUsuarios()
     {
         $sql = "Select * from usuarios";
          $data= $this->mysqli->query("select * from usuarios ");
+         while($fila = $this->mysqli->fetch_object($data)){
+             $datos[] = $fila;
+         }
+return $datos;
+         /*
         $res = $data->fetch_row();  
-        while($row = $data->fetch_array())
+        while($row = $data->fetch_objet())
         {
         $rows3[] = $row;
         }
@@ -37,7 +42,7 @@ Class Usuarios  implements Iusuarios
         {
      //   echo json_encode($row2);
          return json_encode($row2);
-        }
+        }*/
     }
     //Method f
     public function UpdateUser($nombre,$username,$password,$rol)

@@ -4,5 +4,5 @@ $instancia = new Usuarios();
 $array =  $instancia->GetallUsuarios();
 $validacion = new Validacion();
 $libro = new Libros();
-$libro->Setname( "jesus") ;
-echo $libro->Getname();
+
+var_dump();
